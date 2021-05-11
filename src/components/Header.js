@@ -14,18 +14,27 @@ class Header extends React.Component {
         const  { list, active_id } = this.props
         return (
             <div className='header'>
-                {
-                    list.map( item=>{
-                        return (
-                            <p
-                                onClick={()=>this.select_item(item)}
-                                className={ `${ active_id===item.item_id ? 'active' : ''}` }
-                                key={item.item_id}>
-                                {item.name}
-                            </p>
-                        )
-                    })
-                }
+                <div className="header-nav">
+                    <div className='header-nav-left'>
+                        <span>个人博客</span>
+                        <span>排名技术贴</span>
+                    </div>
+                    <div className='header-nav-list'>
+                        {
+                            list.map( item=>{
+                                return (
+                                    <p
+                                        onClick={()=>this.select_item(item)}
+                                        className={ `${ active_id===item.item_id ? 'active' : ''}` }
+                                        key={item.item_id}>
+                                        {item.name}
+                                    </p>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+
             </div>
         )
     }

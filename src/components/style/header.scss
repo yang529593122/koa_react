@@ -1,13 +1,41 @@
 .header{
-  height: 44px;
-  line-height: 44px;
-  display: flex;
-  justify-content: center;
-  p{
-    padding: 0 20px;
-    cursor: pointer;
-    &.active{
-      color: aquamarine;
+  height: 50px;
+  line-height: 50px;
+  background: #1C2327;
+  &:before{
+    background: #000 linear-gradient(to left, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+    content: "";
+    height: 5px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .header-nav{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    .header-nav-left{
+      color: #fff;
+      margin-right: 100px;
+      span{
+        font-size: 20px;
+        &:nth-of-type(2){
+          padding-left: 10px;
+          font-size: 16px;
+        }
+      }
+    }
+    .header-nav-list{
+      display: flex;
+      color: #fff;
+      p{
+        padding: 0 20px;
+        cursor: pointer;
+        &.active{
+          color: aquamarine;
+        }
+      }
     }
   }
+
 }

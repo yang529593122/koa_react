@@ -11,7 +11,7 @@ const getHttpsConfig = require('./getHttpsConfig');
 
 const host = process.env.HOST || '0.0.0.0';
 const sockHost = process.env.WDS_SOCKET_HOST;
-const sockPath = process.env.WDS_SOCKET_PATH; // default: '/sockjs-NodePages'
+const sockPath = process.env.WDS_SOCKET_PATH; // default: '/sockjs-node'
 const sockPort = process.env.WDS_SOCKET_PORT;
 
 module.exports = function (proxy, allowedHost) {
@@ -46,7 +46,7 @@ module.exports = function (proxy, allowedHost) {
     // project directory is dangerous because we may expose sensitive files.
     // Instead, we establish a convention that only files in `public` directory
     // get served. Our build script will copy `public` into the `build` folder.
-    // In `index.HtmlPage`, you can get URL of `public` folder with %PUBLIC_URL%:
+    // In `index.html`, you can get URL of `public` folder with %PUBLIC_URL%:
     // <link rel="icon" href="%PUBLIC_URL%/favicon.ico">
     // In JavaScript code, you can access it with `process.env.PUBLIC_URL`.
     // Note that we only recommend to use `public` folder as an escape hatch
@@ -63,7 +63,7 @@ module.exports = function (proxy, allowedHost) {
     // in the webpack development configuration. Note that only changes
     // to CSS are currently hot reloaded. JS changes will refresh the browser.
     hot: true,
-    // Use 'ws' instead of 'sockjs-NodePages' on server since we're using native
+    // Use 'ws' instead of 'sockjs-node' on server since we're using native
     // websockets in `webpackHotDevClient`.
     transportMode: 'ws',
     // Prevent a WS client from getting injected as we're already including
