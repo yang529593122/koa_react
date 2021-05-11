@@ -1,8 +1,10 @@
 import React from 'react';
+import {withRouter} from "react-router-dom";
+// 组建
+import Header from "../../components/Header"
+// 方法
 import  {get_home_data} from "../../axios/api"
 import  { isLogin } from "../../tools";
-import {withRouter} from "react-router-dom";
-
 class Home extends React.Component {
 
         state={
@@ -27,6 +29,7 @@ class Home extends React.Component {
         const  { list } = this.state
         return (
             <>
+                <Header />
                 <span onClick={() => this.getHomeData() }>点击 send 请求</span>
                 {
                     list.map( item=> <p key={item.id}>{item.name}</p>)

@@ -89,7 +89,7 @@ module.exports = function (webpackEnv) {
     isEnvProduction && process.argv.includes('--profile');
 
   // We will provide `paths.publicUrlOrPath` to our app
-  // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
+  // as %PUBLIC_URL% in `index.HtmlPage` and `process.env.PUBLIC_URL` in JavaScript.
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
@@ -102,14 +102,14 @@ module.exports = function (webpackEnv) {
       isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
         loader: MiniCssExtractPlugin.loader,
-        // css is located in `static/css`, use '../../' to locate index.html folder
+        // CssPages is located in `static/CssPages`, use '../../' to locate index.HtmlPage folder
         // in production `paths.publicUrlOrPath` can be a relative path
         options: paths.publicUrlOrPath.startsWith('.')
           ? { publicPath: '../../' }
           : {},
       },
       {
-        loader: require.resolve('css-loader'),
+        loader: require.resolve('CssPages-loader'),
         options: cssOptions,
       },
       {
@@ -129,7 +129,7 @@ module.exports = function (webpackEnv) {
               },
               stage: 3,
             }),
-            // Adds PostCSS Normalize as the reset css with default options,
+            // Adds PostCSS Normalize as the reset CssPages with default options,
             // so that it honors browserslist config in package.json
             // which in turn let's users customize the target behavior as per their needs.
             postcssNormalize(),
@@ -283,7 +283,7 @@ module.exports = function (webpackEnv) {
                   // separate file
                   inline: false,
                   // `annotation: true` appends the sourceMappingURL to the end of
-                  // the css file, helping the browser find the sourcemap
+                  // the CssPages file, helping the browser find the sourcemap
                   annotation: true,
                 }
               : false,
@@ -316,7 +316,7 @@ module.exports = function (webpackEnv) {
         modules.additionalModulePaths || []
       ),
       // These are the reasonable defaults supported by the Node ecosystem.
-      // We also include JSX as a common component filename extension to support
+      // We also include JSX as a common components filename extension to support
       // some tools, although we do not recommend using it, see:
       // https://github.com/facebook/create-react-app/issues/290
       // `web` extension prefixes have been added for better support
@@ -461,12 +461,12 @@ module.exports = function (webpackEnv) {
               },
             },
             // "postcss" loader applies autoprefixer to our CSS.
-            // "css" loader resolves paths in CSS and adds assets as dependencies.
+            // "CssPages" loader resolves paths in CSS and adds assets as dependencies.
             // "style" loader turns CSS into JS modules that inject <style> tags.
             // In production, we use MiniCSSExtractPlugin to extract that CSS
             // to a file, but in development "style" loader enables hot editing
             // of CSS.
-            // By default we support CSS Modules with the extension .module.css
+            // By default we support CSS Modules with the extension .module.CssPages
             {
               test: cssRegex,
               exclude: cssModuleRegex,
@@ -483,7 +483,7 @@ module.exports = function (webpackEnv) {
               sideEffects: true,
             },
             // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
-            // using the extension .module.css
+            // using the extension .module.CssPages
             {
               test: cssModuleRegex,
               use: getStyleLoaders({
@@ -541,9 +541,9 @@ module.exports = function (webpackEnv) {
             // that fall through the other loaders.
             {
               loader: require.resolve('file-loader'),
-              // Exclude `js` files to keep "css" loader working as it injects
+              // Exclude `js` files to keep "CssPages" loader working as it injects
               // its runtime that would otherwise be processed through "file" loader.
-              // Also exclude `html` and `json` extensions so they get processed
+              // Also exclude `HtmlPage` and `json` extensions so they get processed
               // by webpacks internal loaders.
               exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               options: {
@@ -557,7 +557,7 @@ module.exports = function (webpackEnv) {
       ],
     },
     plugins: [
-      // Generates an `index.html` file with the <script> injected.
+      // Generates an `index.HtmlPage` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
           {},
@@ -589,8 +589,8 @@ module.exports = function (webpackEnv) {
       isEnvProduction &&
         shouldInlineRuntimeChunk &&
         new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+[.]js/]),
-      // Makes some environment variables available in index.html.
-      // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
+      // Makes some environment variables available in index.HtmlPage.
+      // The public URL is available as %PUBLIC_URL% in index.HtmlPage, e.g.:
       // <link rel="icon" href="%PUBLIC_URL%/favicon.ico">
       // It will be an empty string unless you specify "homepage"
       // in `package.json`, in which case it will be the pathname of that URL.
@@ -635,14 +635,14 @@ module.exports = function (webpackEnv) {
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
-          filename: 'static/css/[name].[contenthash:8].css',
-          chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+          filename: 'static/CssPages/[name].[contenthash:8].CssPages',
+          chunkFilename: 'static/CssPages/[name].[contenthash:8].chunk.CssPages',
         }),
       // Generate an asset manifest file with the following content:
       // - "files" key: Mapping of all asset filenames to their corresponding
       //   output file so that tools can pick it up without having to parse
-      //   `index.html`
-      // - "entrypoints" key: Array of files which are included in `index.html`,
+      //   `index.HtmlPage`
+      // - "entrypoints" key: Array of files which are included in `index.HtmlPage`,
       //   can be used to reconstruct the HTML if necessary
       new ManifestPlugin({
         fileName: 'asset-manifest.json',

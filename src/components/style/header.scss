@@ -1,0 +1,13 @@
+.header{
+  height: 44px;
+  line-height: 44px;
+  display: flex;
+  justify-content: center;
+  p{
+    padding: 0 20px;
+    cursor: pointer;
+    &.active{
+      color: aquamarine;
+    }
+  }
+}
