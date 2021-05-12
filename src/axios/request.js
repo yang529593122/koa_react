@@ -10,6 +10,7 @@ service.interceptors.request.use(config => {
         ? config.data = qs.stringify({...config.data})
         : config.params = {...config.params};
     config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+    config.headers['Authorization'] = localStorage.getItem('uid') || '' ;
     return config;
 }, error => {  //请求错误处理
     return Promise.reject(error)

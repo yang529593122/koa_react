@@ -24,9 +24,19 @@ class Mysql {
             });
         })
     }
-    login (data) {
+    search(data){
         return new Promise((resolve, reject) => {
-            pool.query(`SELECT * from user_list where name='${data.username}' and password='${data.password}'`, function (error, results, fields) {
+            pool.query(`SELECT * from user_list where name='${data.username}'`, function (error, results, fields) {
+                if (error) {
+                    throw error
+                };
+                resolve(results)
+            });
+        })
+    }
+    register(data){
+        return new Promise((resolve, reject) => {
+            pool.query(`INSERT INTO user_list (name,password)  VALUES ('${data.username}','${data.password}' )`, function (error, results, fields) {
                 if (error) {
                     throw error
                 };
@@ -34,7 +44,17 @@ class Mysql {
                 // console.log('The solution is: ', results[0].solution);
             });
         })
-
+    }
+    login (data) {
+        return new Promise((resolve, reject) => {
+            pool.query(`SELECT * from user_list where name='${data.username}'`, function (error, results, fields) {
+                if (error) {
+                    throw error
+                };
+                resolve(results)
+                // console.log('The solution is: ', results[0].solution);
+            });
+        })
     }
 }
 

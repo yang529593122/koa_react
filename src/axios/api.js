@@ -15,3 +15,19 @@ export const login = (data)=>{
         data:data
     })
 }
+// 用户注册
+export const registered = (data)=>{
+    return service({
+        url:'/registered',
+        method:'post',
+        data:data
+    })
+}
+// 获取用户信息
+export const userinfo = (data)=>{
+    return service({
+        url:'/userinfo',
+        method:'get',
+        data:data
+    })
+}

@@ -4,7 +4,7 @@ import {withRouter} from "react-router-dom";
 import Header from "../../components/Header"
 import { Carousel } from 'antd';
 // 方法
-import  {get_home_data} from "../../axios/api"
+import  {get_home_data,userinfo} from "../../axios/api"
 import  { isLogin } from "../../tools";
 // style
 import "./style/index.scss"
@@ -22,7 +22,12 @@ class Home extends React.Component {
         if(!isLogin()){
             const  {history} = this.props
             history.push('/login')
+        }else{
+            userinfo().then(res=>{
+                console.log(res)
+            })
         }
+
     }
     getHomeData(){
         get_home_data().then(res=>{
@@ -33,7 +38,7 @@ class Home extends React.Component {
         })
     }
     render() {
-        const  { list } = this.state
+
         return (
             <>
                 <Header />
