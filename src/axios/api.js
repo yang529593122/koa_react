@@ -31,3 +31,11 @@ export const userinfo = (data)=>{
         data:data
     })
 }
+// 批量删除数据
+export const batchDelete = (data)=>{
+    return service({
+        url:'/batchdelete',
+        method:'post',
+        data:data
+    })
+}

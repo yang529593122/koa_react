@@ -13,9 +13,9 @@ class Mysql {
     constructor () {
 
     }
-    query () {
+    query (addSql) {
         return new Promise((resolve, reject) => {
-            pool.query('SELECT * from test_dome', function (error, results, fields) {
+            pool.query(addSql, function (error, results, fields) {
                 if (error) {
                     throw error
                 };

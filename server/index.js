@@ -18,7 +18,6 @@ require('./config/passport')(passport)
 app.use(router['routes']()).use(router.allowedMethods());
 
 router.get('/get_home_data', async (ctx) => {
-
     let data = await mysql.query()
     ctx.body = {
         "code": 1,
@@ -81,8 +80,7 @@ router.post('/login', async (ctx) => {
                 uid:data[0].uid,
                 username:data[0].name
             }
-            const  token = jwt.sign(payLoad,keys.secretKeys,{ expiresIn: 60})
-
+            const  token = jwt.sign(payLoad,keys.secretKeys,{ expiresIn: 3600})
             ctx.body = {
                 "code": 1,
                 "data":'Bearer '+ token,
@@ -97,5 +95,24 @@ router.post('/login', async (ctx) => {
         }
     }
 })
+//批量删除
+router.post('/batchdelete', async (ctx) => {
 
+    const values = [];
+    ctx.request.body.arr.forEach(function(n) {
+            values.push(`('${n.name}',${n.age})`);
+    });
+    const addSql = `INSERT INTO test_dome (name,age) VALUES ${values.join(',')}`;
+    const _result = await mysql.query(addSql);
+    if (_result) {
+        ctx.body = {
+            "code": 1,
+            "data":null,
+            "massage": 'ok'
+        }
+    }
+
+
+
+})
 app.listen(8000)
